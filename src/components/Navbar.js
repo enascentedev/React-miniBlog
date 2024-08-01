@@ -1,17 +1,22 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink } from "react-router-dom";
+
+import { useAuthentication } from "../hooks/useAuthentication";
+
+import { useAuthValue } from "../contexts/AuthContext";
+
 import styles from "./Navbar.module.css";
 
-
 const Navbar = () => {
-	
-	return (
-		<nav>
-			<NavLink to="/">
-				Mini <span>Blog</span>
-			</NavLink>
-			<ul>
-			<li>
+  const { logout } = useAuthentication();
+  const { user } = useAuthValue();
+
+  return (
+    <nav className={styles.navbar}>
+      <NavLink className={styles.brand} to="/">
+        Mini <span>Blog</span>
+      </NavLink>
+      <ul className={styles.links_list}>
+        <li>
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? styles.active : "")}
@@ -19,6 +24,7 @@ const Navbar = () => {
             Home
           </NavLink>
         </li>
+        {!user && (
           <>
             <li>
               <NavLink
@@ -37,9 +43,43 @@ const Navbar = () => {
               </NavLink>
             </li>
           </>
-			</ul>
-		</nav>
-	)
-}
+        )}
+        {user && (
+          <>
+            <li>
+              <NavLink
+                to="/posts/create"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                Novo post
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard"
+                className={({ isActive }) => (isActive ? styles.active : "")}
+              >
+                Dashboard
+              </NavLink>
+            </li>
+          </>
+        )}
+        <li>
+          <NavLink
+            to="/about"
+            className={({ isActive }) => (isActive ? styles.active : "")}
+          >
+            Sobre
+          </NavLink>
+        </li>
+        {user && (
+          <li>
+            <button onClick={logout}>Sair</button>
+          </li>
+        )}
+      </ul>
+    </nav>
+  );
+};
 
-export default Navbar
+export default Navbar;
