@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 
 // hooks
@@ -14,6 +14,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
+import Dashboard from "./pages/Dashboard/Dashboard";
+import CreatePost from "./pages/CreatePost/CreatePost";
+
 
 function App() {
 	const [user, setUser] = useState(undefined);
@@ -40,14 +43,10 @@ function App() {
 						<Routes>
 							<Route path='/' element={<Home />} />
 							<Route path='/About' element={<About />} />
-							<Route
-								path="/login"
-								element={<Login />}
-							/>
-							<Route
-								path="/register"
-								element={<Register />}
-							/>
+							<Route path="/login" element={!user? <Login />  : <Navigate to="/"/>}/>
+							<Route path="/register"element={!user? <Register />  : <Navigate to="/"/>}/>
+							<Route path="/posts/create"element={user? <CreatePost />  : <Navigate to="/login"/>}/>
+							<Route path="/dashboard"element={user? <Dashboard />  : <Navigate to="/login"/>}/>
 						</Routes>
 					</div>
 					<Footer />

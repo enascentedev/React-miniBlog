@@ -7,7 +7,7 @@ import {
 } from "firebase/auth";
 
 import { useState, useEffect } from "react";
-import { app } from '../firebase/config';  // Corrigindo a importação
+import { app } from '../firebase/config';  
 
 export const useAuthentication = () => {
   const [error, setError] = useState(null);
