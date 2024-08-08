@@ -1,7 +1,29 @@
 .register {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaçamento entre os itens */
+}
+
+.register label {
+  display: flex;
+  flex-direction: column;
+	justify-items: center;
+}
+
+.register .btn {
+  align-self: center; /* Centraliza o botão no formulário */
 }
 
 .register p {
   color: #aaa;
+}
+
+.error {
+  color: red;
 }
