@@ -5,3 +5,19 @@
 .login p {
   color: #aaa;
 }
+
+.login form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Espaçamento entre os itens */
+}
+
+.login label {
+  display: flex;
+  flex-direction: column;
+	justify-items: center;
+}
+
+.login .btn {
+  align-self: center; /* Centraliza o botão no formulário */
+}
