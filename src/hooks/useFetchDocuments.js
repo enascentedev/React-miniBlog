@@ -32,7 +32,7 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
         if (search) {
           q = await query(
             collectionRef,
-            where("tags", "array-contains", search),
+            where("tagsArray", "array-contains", search),
             orderBy("createdAt", "desc")
           );
         } else if (uid) {
@@ -50,9 +50,12 @@ export const useFetchDocuments = (docCollection, search = null, uid = null) => {
             querySnapshot.docs.map((doc) => ({
               id: doc.id,
               ...doc.data(),
+							
             }))
+
           );
         });
+				
       } catch (error) {
         console.log(error);
         setError(error.message);
