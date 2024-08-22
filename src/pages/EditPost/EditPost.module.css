@@ -1,0 +1,22 @@
+.edit_post {
+  text-align: center;
+}
+
+.edit_post h2 {
+  font-size: 2.2em;
+}
+
+.edit_post p {
+	color: #aaa;
+  margin-bottom: 2em;
+}
+.edit_post form {
+	display: flex;
+	flex-direction: column;
+	justify-items: start;
+	gap: 2rem;
+}
+.edit_post .btn {
+	width: 10 px;
+	align-self: center;
+}
